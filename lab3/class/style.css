@@ -1,0 +1,16 @@
+body{
+  background-color: aqua;
+ 
+}
+
+h1{
+  color: blue;
+  margin-left: 20 px;
+
+}
+
+p{
+  color: red;
+  font-size: 20px;
+  margin-left: 40px;
+}

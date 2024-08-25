@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <canvas id="mycanvas" width="600" height="200" style="border:1px solid #000000;"></canvas>
+
+  <script>
+    var canvas = document.getElementById('mycanvas');
+    var context = canvas.getContext('2d');
+    var text = 'Pasuwat Thangkongnuch(Tonkla)';
+    var maxWidth = canvas.width - 100; 
+    var fontSize = 50; 
+    var x = 50; 
+    var y = 100; 
+
+    
+    do {
+      context.font = fontSize + "px Georgia";
+      var textWidth = context.measureText(text).width;
+      if (textWidth > maxWidth) {
+        fontSize -= 1; 
+      }
+    } while (textWidth > maxWidth);
+
+    context.lineWidth = 3;
+    context.strokeStyle = 'green';
+    context.strokeText(text, x, y);
+  </script>
+</body>
+</html>
+

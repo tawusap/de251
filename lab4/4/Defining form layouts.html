@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Person Form</h2>
+        
+
+        <!-- Form starts here -->
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" value="Mr.">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" value="Chee Kin">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" value="Lim">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="gender">Gender</label>
+                    <select id="gender" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dob">Date of Birth</label>
+                    <input type="text" class="form-control" id="dob" placeholder="dd/mm/yyyy">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="street">Street</label>
+                    <input type="text" class="form-control" id="street">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="postcode">Post Code</label>
+                    <input type="text" class="form-control" id="postcode">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="country">Country</label>
+                    <select id="country" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Country 1</option>
+                        <option>Country 2</option>
+                        <option>Country 3</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

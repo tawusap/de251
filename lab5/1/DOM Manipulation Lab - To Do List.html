@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo-container">
+        <h1>To-do list</h1>
+        <ul id="task-list">
+            <!-- List items will be dynamically added here -->
+        </ul>
+        <input type="text" id="task-input" placeholder="Task">
+        <button id="add-task">Add Task</button>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        document.getElementById('add-task').addEventListener('click', function() {
+            const taskInput = document.getElementById('task-input');
+            const taskValue = taskInput.value;
+
+            if (taskValue === '') {
+                alert('Please enter a task');
+                return;
+            }
+
+            const li = document.createElement('li');
+            li.textContent = taskValue;
+
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'REMOVE';
+            removeBtn.classList.add('remove-btn');
+
+            // Remove task on button click
+            removeBtn.addEventListener('click', function() {
+                li.remove();
+            });
+
+            li.appendChild(removeBtn);
+            document.getElementById('task-list').appendChild(li);
+
+            // Clear the input field after adding the task
+            taskInput.value = '';
+        });
+    </script>
+</body>
+</html>

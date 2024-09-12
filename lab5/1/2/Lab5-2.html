@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sweet Bekery - Employees Payroll</title>
+    <link rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/lab5/1/2/gif\ wallpaper.gif') no-repeat; /* Replace with your background image URL */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: #ff9800;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 20px;
+            background-color: #ff9800;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #e68900;
+        }
+
+        .results-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .full-name,
+        .weekly-earnings {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .result-label {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .result-output {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>My Sweet Bekery</h1>
+        <h2>Employees Payroll</h2>
+
+        <!-- Form 1: Employee Work Hours Input -->
+        <form id="workForm">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required>
+
+            <label for="hourly-wage">Hourly Salary:</label>
+            <input type="number" id="hourly-wage" name="hourly-wage" required min="0">
+
+            <label>Weekly Hours:</label>
+            <div style="display: flex; justify-content: space-between;">
+                <label for="monday">Mon:</label>
+                <input type="number" id="monday" name="monday" min="0" max="8" required>
+                <label for="tuesday">Tue:</label>
+                <input type="number" id="tuesday" name="tuesday" min="0" max="8" required>
+                <label for="wednesday">Wed:</label>
+                <input type="number" id="wednesday" name="wednesday" min="0" max="8" required>
+                <label for="thursday">Thu:</label>
+                <input type="number" id="thursday" name="thursday" min="0" max="8" required>
+                <label for="friday">Fri:</label>
+                <input type="number" id="friday" name="friday" min="0" max="8" required>
+                <label for="saturday">Sat:</label>
+                <input type="number" id="saturday" name="saturday" min="0" max="8" required>
+                <label for="sunday">Sun:</label>
+                <input type="number" id="sunday" name="sunday" min="0" max="8" required>
+            </div>
+
+            <input type="submit" value="Process">
+            <input type="reset" value="Reset">
+        </form>
+    
+
+    
+        <!-- Form 2: Display Results -->
+        <h2>Payroll Summary</h2>
+        <div>
+            <span class="result-label">Full Name:</span>
+            <span id="full-name" class="result-output"></span>
+        </div>
+        <div>
+            <span class="result-label">Weekly Earnings:</span>
+            <span id="weekly-earnings" class="result-output"></span>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('workForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            // Get the values
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const hourlyWage = parseFloat(document.getElementById('hourly-wage').value);
+            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+            let totalHours = 0;
+
+            // Calculate total hours, ensure no day exceeds 8 hours
+            for (let i = 0; i < days.length; i++) {
+                let hours = parseFloat(document.getElementById(days[i]).value);
+                if (hours > 24) {
+                    alert("Work hours for " + days[i] + " cannot exceed 8 hours.");
+                    return;
+                }
+                totalHours += hours;
+            }
+
+            // Calculate weekly earnings
+            const weeklyEarnings = totalHours * hourlyWage;
+
+            // Display the result in form 2
+            document.getElementById('full-name').innerText = firstName + " " + lastName;
+            document.getElementById('weekly-earnings').innerText = "$" + weeklyEarnings.toFixed(2);
+        });
+    </script>
+
+</body>
+
+</html>

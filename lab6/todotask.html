@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        $(document).ready(function() {
+            // Load tasks from local storage
+            loadTasks();
+
+            // Add task on button click
+            $('#addTaskButton').click(function() {
+                const taskText = $('#taskInput').val().trim();
+                if (taskText) {
+                    addTask(taskText);
+                    $('#taskInput').val(''); // Clear input field
+                }
+            });
+
+            // Mark task as complete on click
+            $(document).on('click', 'li', function() {
+                $(this).toggleClass('completed');
+                saveTasks();
+            });
+
+            // Clear completed tasks
+            $('#clearCompletedButton').click(function() {
+                $('.completed').remove();
+                saveTasks();
+            });
+
+            // Clear all tasks
+            $('#clearAllTasks').click(function() {
+                clearAllTasks();
+            });
+
+            // Function to add a task
+            function addTask(task) {
+                $('#taskList').append(`<li>${task}</li>`);
+                saveTasks();
+            }
+
+            // Save tasks to local storage
+            function saveTasks() {
+                const tasks = $('#taskList li').map(function() {
+                    return {
+                        text: $(this).text(),
+                        completed: $(this).hasClass('completed')
+                    };
+                }).get();
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+
+            // Load tasks from local storage
+            function loadTasks() {
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                tasks.forEach(task => {
+                    const taskItem = $('<li>').text(task.text);
+                    if (task.completed) {
+                        taskItem.addClass('completed');
+                    }
+                    $('#taskList').append(taskItem);
+                });
+            }
+
+            // Function to clear all tasks
+            function clearAllTasks() {
+                localStorage.removeItem('tasks'); // Remove tasks from localStorage
+                $('#taskList').empty(); // Clear the task list from the UI
+            }
+        });
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button id="addTaskButton">Add</button>
+        <ul id="taskList"></ul>
+        <button id="clearCompletedButton">Clear Completed</button>
+        <button id="clearAllTasks">Clear All Tasks</button>
+    </div>
+</body>
+</html>
